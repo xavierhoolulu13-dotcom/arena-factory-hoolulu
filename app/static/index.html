@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Arena Factory Hoolulu · 808</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@360;450;580;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="rail">
+        <div class="brand">
+          <div class="mark" aria-hidden="true">808</div>
+          <div>
+            <div class="brand-kicker">Arena Factory</div>
+            <div class="brand-name">Hoolulu</div>
+          </div>
+        </div>
+        <nav class="nav" id="nav">
+          <button data-view="command" class="active">Command</button>
+          <button data-view="pipeline">Pipeline</button>
+          <button data-view="social">Social</button>
+          <button data-view="sales">Sales</button>
+          <button data-view="delivery">Delivery</button>
+          <button data-view="pings">Pings <span class="badge" id="ping-badge">0</span></button>
+          <button data-view="agents">Agents</button>
+        </nav>
+        <div class="rail-foot">
+          <div class="policy">
+            Ping policy
+            <strong>HIGH / CRITICAL only</strong>
+          </div>
+          <div class="operator">Operator · Xavier Hoolulu</div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="top">
+          <div>
+            <h1 id="view-title">Command</h1>
+            <p class="lede" id="view-lede">
+              Agents promote, sell, and run the full pipeline. You only get pinged when it is on fire.
+            </p>
+          </div>
+          <div class="top-actions">
+            <label class="switch">
+              <input type="checkbox" id="autopilot" checked />
+              <span>Autopilot</span>
+            </label>
+            <button class="btn ghost" id="btn-tick">Run cycle</button>
+          </div>
+        </header>
+
+        <div id="ping-banner" class="ping-banner hidden" role="status"></div>
+
+        <section data-panel="command" class="panel active">
+          <div class="kpis" id="kpis"></div>
+          <div class="grid-2">
+            <article class="card">
+              <h2>Live factory</h2>
+              <ol class="feed" id="event-feed"></ol>
+            </article>
+            <article class="card">
+              <h2>Offers</h2>
+              <div class="offers" id="offers"></div>
+            </article>
+          </div>
+        </section>
+
+        <section data-panel="pipeline" class="panel">
+          <div class="kanban" id="kanban"></div>
+        </section>
+
+        <section data-panel="social" class="panel">
+          <article class="card toolbar">
+            <h2>Kai · Social promoter</h2>
+            <form id="social-form" class="row">
+              <select id="social-platform"></select>
+              <select id="social-sku"></select>
+              <button class="btn" type="submit">Queue post</button>
+            </form>
+          </article>
+          <div class="posts" id="posts"></div>
+        </section>
+
+        <section data-panel="sales" class="panel">
+          <div class="sales">
+            <article class="card">
+              <h2>Cass · Sales desk</h2>
+              <form id="lead-form" class="stack">
+                <input name="name" placeholder="Contact name" required />
+                <input name="business" placeholder="Business" required />
+                <select name="island">
+                  <option>Oahu</option>
+                  <option>Maui</option>
+                  <option>Big Island</option>
+                  <option>Kauai</option>
+                </select>
+                <select name="channel">
+                  <option value="instagram">Instagram</option>
+                  <option value="tiktok">TikTok</option>
+                  <option value="facebook">Facebook</option>
+                  <option value="whatsapp">WhatsApp</option>
+                  <option value="google_business">Google</option>
+                </select>
+                <textarea name="message" placeholder="What they said…" required></textarea>
+                <button class="btn" type="submit">Ingest lead</button>
+              </form>
+            </article>
+            <article class="card grow">
+              <h2>Conversations</h2>
+              <div id="sales-list" class="sales-list"></div>
+            </article>
+          </div>
+        </section>
+
+        <section data-panel="delivery" class="panel">
+          <div class="grid-2">
+            <article class="card">
+              <h2>Zero-trust payments</h2>
+              <p class="hint">
+                Agents never mark payment complete. That button is yours.
+              </p>
+              <div id="payments"></div>
+            </article>
+            <article class="card">
+              <h2>Pono · Delivery</h2>
+              <div id="deliveries"></div>
+            </article>
+          </div>
+        </section>
+
+        <section data-panel="pings" class="panel">
+          <article class="card">
+            <h2>Xavier inbox</h2>
+            <p class="hint">
+              Everything else is silent. If it is here, it is HIGH or CRITICAL.
+            </p>
+            <div id="pings"></div>
+          </article>
+        </section>
+
+        <section data-panel="agents" class="panel">
+          <div class="agent-grid" id="agents"></div>
+        </section>
+      </main>
+    </div>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,87 @@
+{
+  "id": "arena-factory-hoolulu",
+  "version": "1.0.0",
+  "codename": "Hoolulu 808",
+  "operator": {
+    "name": "Xavier Hoolulu",
+    "org": "XKSH808 Digital Services Hawaii",
+    "ping_policy": "HIGH_AND_CRITICAL_ONLY",
+    "ping_channels": ["dashboard"]
+  },
+  "zero_trust": {
+    "delivery_requires_human_verified_payment": true,
+    "agents_cannot_mark_payment_complete": true,
+    "payment_complete_is_operator_only": true
+  },
+  "pipeline": [
+    "discover",
+    "attract",
+    "capture",
+    "qualify",
+    "pitch",
+    "close",
+    "verify",
+    "deliver",
+    "retain"
+  ],
+  "agents": {
+    "kai": {
+      "role": "Social Media Promoter",
+      "owns": ["attract"],
+      "can_ping_operator": false
+    },
+    "echo": {
+      "role": "Lead Engine",
+      "owns": ["discover", "capture", "qualify"],
+      "can_ping_operator": false
+    },
+    "cass": {
+      "role": "Sales Closer",
+      "owns": ["pitch", "close"],
+      "can_ping_operator": false
+    },
+    "pono": {
+      "role": "Delivery",
+      "owns": ["deliver"],
+      "can_ping_operator": false
+    },
+    "aloha": {
+      "role": "Retention",
+      "owns": ["retain"],
+      "can_ping_operator": false
+    },
+    "watch": {
+      "role": "Monitor + Escalation Gate",
+      "owns": ["verify"],
+      "can_ping_operator": true,
+      "ping_levels": ["high", "critical"]
+    }
+  },
+  "escalation": {
+    "silent": ["low", "medium"],
+    "ping": ["high", "critical"],
+    "high_triggers": [
+      "payment_needs_human_verify",
+      "refund_request",
+      "chargeback_language",
+      "hostile_customer",
+      "legal_threat",
+      "delivery_blocked",
+      "fraud_suspected"
+    ],
+    "critical_triggers": [
+      "system_down",
+      "data_loss",
+      "active_chargeback",
+      "attorney_letter",
+      "safety_threat"
+    ]
+  },
+  "catalog": [
+    {"sku": "free-site", "name": "Free Website", "price": 0, "tier": "entry"},
+    {"sku": "souper-bot", "name": "Souper Agent Bot", "price": 197, "tier": "core"},
+    {"sku": "starter", "name": "Starter Pack", "price": 297, "tier": "core"},
+    {"sku": "pro", "name": "Pro Build", "price": 497, "tier": "premium"},
+    {"sku": "kkos", "name": "KK OS Setup", "price": 997, "tier": "premium"}
+  ]
+}

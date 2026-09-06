@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Arena Factory Hoolulu — one-command start.
+set -euo pipefail
+ROOT="$(cd "$(dirname "$0")" && pwd)"
+cd "$ROOT"
+
+PY="${PYTHON:-python3}"
+VENV="$ROOT/.venv"
+
+if [[ ! -x "$VENV/bin/python" ]]; then
+  "$PY" -m venv "$VENV"
+  "$VENV/bin/pip" install -q --upgrade pip
+  "$VENV/bin/pip" install -q -r "$ROOT/requirements.txt"
+fi
+
+HOST="${HOST:-0.0.0.0}"
+PORT="${PORT:-8080}"
+echo "Arena Factory Hoolulu · command center on http://${HOST}:${PORT}"
+echo "Ping policy: HIGH / CRITICAL only"
+exec "$VENV/bin/python" -m uvicorn app.main:app --host "$HOST" --port "$PORT"
